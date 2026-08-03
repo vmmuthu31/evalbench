@@ -4,27 +4,33 @@
 
 Repository: [github.com/vmmuthu31/evalbench](https://github.com/vmmuthu31/evalbench)
 
-EvalBench evaluates optical character recognition (OCR), document understanding, educational
-assessment, multimodal understanding, and trustworthiness under one JSON schema and one fixed
-train/val/test split protocol, instead of five separate single-task benchmarks. The repository
-name stays fixed as the benchmark grows across releases (v1.0.0-pilot, v1.1.0, v2.0.0, ...) — see
-`CHANGELOG.md` and [GitHub Releases](https://github.com/vmmuthu31/evalbench/releases) for what
-changed at each version, rather than a versioned repo name.
+EvalBench is an open research benchmark for evaluating AI systems on educational document analysis
+tasks. It provides a unified evaluation framework covering OCR, document understanding, educational
+assessment, multimodal understanding, and trustworthiness under a common schema and standardized
+evaluation protocol, instead of five separate single-task benchmarks.
+
+This repository hosts the EvalBench benchmark and its reproducibility package. Versioned releases
+are available through [GitHub Releases](https://github.com/vmmuthu31/evalbench/releases); see
+`CHANGELOG.md` for what changed at each version.
 
 **Current release: v1.0.0-pilot**, the reproducibility package for the manuscript *"EvalBench v1
 (Pilot Release): A Unified Multi-Task Benchmark for AI Evaluation in Educational Settings,"*
 submitted to Engineering Applications of Artificial Intelligence.
 
+Status: Pilot Release (v1.0.0)
+Journal Submission: Submitted to Engineering Applications of Artificial Intelligence (under review)
+License: MIT (code), CC BY 4.0 (processed manifest)
+
 ## What this pilot release reports
 
 Five tracks are defined in the schema; three have experimental results in this release:
 
-- **Track 1 — OCR accuracy.** Four models (Tesseract 5, EasyOCR, TrOCR-base, PaddleOCR) evaluated
-  on IAM and IIIT English Word, with bootstrap confidence intervals and paired permutation tests on
-  the cross-corpus rank reversal.
-- **Track 3 — Educational assessment.** Gemini-based rubric-free grading on 50 Mendeley exam
+- **OCR accuracy (Track 1).** Performance for four widely used OCR systems — Tesseract 5, EasyOCR,
+  TrOCR-base, and PaddleOCR — on the IAM and IIIT English Word datasets, with bootstrap confidence
+  intervals and paired permutation tests on the cross-corpus rank reversal.
+- **Educational assessment (Track 3).** Gemini-based rubric-free grading on 50 Mendeley exam
   papers, with bootstrap CIs on MAE and Pearson r.
-- **Track 5 — Trustworthiness.** Confidence calibration (ECE, AUROC) and evidence-generation rate
+- **Trustworthiness (Track 5).** Confidence calibration (ECE, AUROC) and evidence-generation rate
   on the same 50 papers.
 
 Tracks 2 (document understanding) and 4 (multimodal understanding) are fully specified in the
@@ -108,7 +114,14 @@ licensing terms of its constituent source datasets noted above.
 
 ## Contact
 
-Vairamuthu M. — vm8470@srmist.edu.in
-Sudhan M. B. — sudhanm@srmist.edu.in
-Department of Computer Science and Engineering, SRM Institute of Science and Technology, Chennai,
-India.
+For questions regarding the benchmark or reproducibility package, please contact:
+
+**Vairamuthu M.**
+SRM Institute of Science and Technology
+Email: vm8470@srmist.edu.in
+
+or
+
+**Sudhan M. B.**
+SRM Institute of Science and Technology
+Email: sudhanm@srmist.edu.in
