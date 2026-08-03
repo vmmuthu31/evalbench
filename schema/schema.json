@@ -1,0 +1,66 @@
+{
+  "version": "2.0",
+  "description": "EvalBench unified record schema — 5-track benchmark for handwritten educational document understanding",
+  "fields": {
+    "record_id":     {"type": "string", "nullable": false, "example": "MDLY-0001"},
+    "dataset":       {"type": "string", "nullable": false, "example": "mendeley"},
+    "language":      {"type": "string", "nullable": false, "example": "English"},
+    "image_path":    {"type": "string", "nullable": true,  "example": "datasets/processed/images/MDLY-0001.jpg"},
+    "ocr_text":      {"type": "string", "nullable": true,  "example": "The mitochondria is the powerhouse..."},
+    "ground_truth":  {"type": "string", "nullable": true,  "example": "The mitochondria produces ATP via oxidative phosphorylation."},
+    "teacher_score": {"type": "number", "nullable": true,  "example": 3.5},
+    "max_score":     {"type": "number", "nullable": true,  "example": 5.0},
+    "track":         {"type": "string", "nullable": false, "example": "scored_answer_core"},
+    "license":       {"type": "string", "nullable": false, "example": "CC BY 4.0"},
+    "split":         {"type": "string", "nullable": false, "example": "train"},
+    "extra":         {"type": "object", "nullable": true,  "description": "Source-specific fields e.g. writer_id, question_id, per_question_scores"}
+  },
+  "tracks": {
+    "Track 1 — OCR": {
+      "schema_value": "ocr_substrate",
+      "task": "Transcribe handwritten text from image",
+      "metrics": ["CER", "WER", "Character Accuracy", "Exact Match"],
+      "datasets": ["iam", "iiit_word", "iiit_page", "anshcode1", "gopika13"],
+      "paper1_connection": "Basic legibility — prerequisite for all downstream tasks"
+    },
+    "Track 2 — Document Understanding": {
+      "schema_value": "ocr_substrate",
+      "task": "Page structure parsing, answer localization, layout understanding",
+      "metrics": ["Answer extraction F1", "Page structure accuracy"],
+      "datasets": ["iam", "iiit_page", "gopika13", "ieee"],
+      "paper1_connection": "Models hallucinate structure — this tests whether they locate content correctly"
+    },
+    "Track 3 — Educational Assessment": {
+      "schema_value": "scored_answer_core",
+      "task": "Given handwritten answer image + rubric, assign score",
+      "metrics": ["Score MAE", "Pearson correlation", "Spearman correlation", "Exact Score Match"],
+      "datasets": ["mendeley", "ieee"],
+      "paper1_connection": "Core grading task — direct target of trustworthiness concerns"
+    },
+    "Track 4 — Multimodal Understanding": {
+      "schema_value": "multimodal",
+      "task": "STEM diagram interpretation, visual reasoning, VQA over educational documents",
+      "metrics": ["VQA Accuracy", "Diagram interpretation accuracy"],
+      "datasets": ["gopika13"],
+      "paper1_connection": "Multimodality criterion identified in Paper 1 as underserved"
+    },
+    "Track 5 — Trustworthiness": {
+      "schema_value": "scored_answer_core",
+      "task": "Evaluate confidence calibration, evidence grounding, explanation quality",
+      "metrics": ["ECE", "AUROC", "Grounding score", "Explanation faithfulness"],
+      "datasets": ["mendeley", "ieee"],
+      "paper1_connection": "Direct operationalization of Paper 1 trustworthiness gap findings"
+    }
+  },
+  "splits": {
+    "train": "70% within each dataset (large datasets)",
+    "val":   "10% within each dataset (large datasets)",
+    "test":  "20% within each dataset; small datasets (Mendeley, gopika13, IEEE) assigned entirely to test"
+  },
+  "reviewer_arguments": {
+    "vs_IAM": "IAM evaluates handwriting recognition only — no educational context, no grading, no trustworthiness",
+    "vs_DocVQA": "DocVQA contains invoices and forms — not handwritten exam scripts with grading context",
+    "vs_Mendeley_alone": "Mendeley has 50 scripts — too small for comprehensive multi-track evaluation",
+    "vs_OCR_models": "OCR is already solved for clean handwriting. EvalBench evaluates the full pipeline from reading to grading to explanation."
+  }
+}

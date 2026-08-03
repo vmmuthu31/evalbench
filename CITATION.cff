@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use EvalBench, please cite the manuscript below."
+title: "EvalBench v1 (Pilot Release): A Unified Multi-Task Benchmark for AI Evaluation in Educational Settings"
+authors:
+  - family-names: "M."
+    given-names: "Vairamuthu"
+    email: vm8470@srmist.edu.in
+    affiliation: "SRM Institute of Science and Technology"
+  - family-names: "M. B."
+    given-names: "Sudhan"
+    email: sudhanm@srmist.edu.in
+    affiliation: "SRM Institute of Science and Technology"
+version: "1.0.0-pilot"
+date-released: "2026-08-03"
+license: MIT
+repository-code: "https://github.com/vmmuthu31/evalbench"
