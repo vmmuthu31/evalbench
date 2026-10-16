@@ -1,0 +1,2 @@
+model,n,mae,accuracy_pm3,ece,auroc,brier,grounding_rate,reasoning_rate
+gemini-3.5-flash (fixed),50,1.84,0.84,0.1056,0.5298,0.1444,1.0,1.0

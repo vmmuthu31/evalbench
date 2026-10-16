@@ -1,0 +1,3 @@
+track,conf_exact_agreement,conf_spearman_between_runs,exact_agreement,max_abs_diff,mean_abs_diff,n,pearson_between_runs,run1_MAE,run1_accuracy_pm3,run1_auroc,run1_brier,run1_ece,run1_r,run1_within1,run1_within3,run2_MAE,run2_accuracy_pm3,run2_auroc,run2_brier,run2_ece,run2_r,run2_within1,run2_within3,within1_agreement
+track3,,,0.94,25.0,0.94,50,0.8673334928256722,1.58,,,,,0.8732601835236459,0.72,0.88,0.8,,,,,0.9805932573773822,0.76,0.92,0.94
+track5,0.88,0.8687822153489092,0.98,10.0,0.2,50,0.9876504317823291,1.84,0.84,0.5298,0.1444,0.1056,0.8891832758756444,0.68,0.84,2.04,0.82,0.6206,0.1552,0.115,0.8677562917762857,0.66,0.82,0.98

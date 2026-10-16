@@ -1,0 +1,2 @@
+model,n,mae,mae_lo,mae_hi,pearson_r,pearson_lo,pearson_hi,spearman_rho,spearman_lo,spearman_hi,within_1,within_3,within_5,mean_bias,median_abs_error,max_abs_error,share_top4_error
+fixed_model_rep2,50,0.8,0.46,1.1902,0.9806,0.9639,0.9921,0.9765,0.9414,0.992,0.76,0.92,0.98,0.68,0.0,6.0,0.45

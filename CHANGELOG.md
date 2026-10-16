@@ -32,3 +32,15 @@ Multi-Task Benchmark for AI Evaluation in Educational Settings."*
 - Track 4 baseline (multimodal / diagram interpretation)
 - Expansion of the graded-assessment corpus beyond the current 50 Mendeley papers
 - Additional languages beyond English
+
+## Repeat-run update — 2026-10-16
+
+Archived on Zenodo as https://doi.org/10.5281/zenodo.23410592.
+
+- Track 3 and Track 5 fixed-model evaluation run a second time under identical settings
+  (`outputs/experiments/fixed_model_rep2/`); Run 1 stays in `outputs/experiments/fixed_model/`.
+  Track 3 MAE 1.58 (Run 1) vs 0.80 (Run 2); Track 5 AUROC 0.530 vs 0.621, both CIs include 0.5.
+- New scripts: `scripts/experiments/run_fixed_gemini.py` (key-rotating, resumable runner;
+  `FIXED_OUT` selects the output folder), `compare_repeat_runs.py`, `track3_bootstrap_stats.py`,
+  `track5_trust/track5_sensitivity.py`.
+- Leaderboard lists both runs.

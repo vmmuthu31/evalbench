@@ -1,0 +1,3 @@
+model,dataset,n_samples,cer,wer,exact_match,char_accuracy,latency_ms_avg,mem_kb_peak
+paddleocr,iam,200,0.6259,1.045,0.09,0.3741,1319.9,37899.9
+paddleocr,iiit_word,200,0.2581,0.39,0.62,0.7419,1847.1,18379.7

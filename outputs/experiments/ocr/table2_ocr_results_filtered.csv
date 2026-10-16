@@ -1,0 +1,4 @@
+model,n,mean_cer,median_cer,exact_match,char_acc,ms_per_img
+easyocr,337,0.6329,0.6667,0.0564,0.3671,149.5
+tesseract5,337,0.7994,0.8,0.0475,0.2006,249.0
+trocr_base,337,0.2337,0.0,0.5964,0.7663,525.8

@@ -1,0 +1,4 @@
+model,dataset,n,mean_cer,median_cer,mean_wer,mean_em,char_accuracy_mean,char_accuracy_median_based
+easyocr,iam,500,0.7386,0.8,1.102,0.046,0.2614,0.2
+tesseract5,iam,500,0.8828,1.0,1.278,0.074,0.1172,0.0
+trocr_base,iam,500,0.4605,0.1429,0.61,0.488,0.5395,0.8571

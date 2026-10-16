@@ -74,5 +74,5 @@ def compute_all(pred: str, ref: str) -> dict:
         "cer":           round(c, 4),
         "wer":           round(w, 4),
         "exact_match":   exact_match(pred, ref),
-        "char_accuracy": round(1.0 - c, 4),
+        "char_accuracy": round(max(0.0, 1.0 - c), 4),
     }

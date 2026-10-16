@@ -1,0 +1,4 @@
+model,n,n_scored,mae,pearson_r,spearman_r,exact_pm1
+gemini_2_5_flash,21,21,6.167,0.415,0.313,0.429
+gemini_flash,22,22,1.432,0.838,0.913,0.727
+gemini_3_5_flash,7,7,4.0,0.313,0.25,0.571

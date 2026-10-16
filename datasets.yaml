@@ -1,0 +1,144 @@
+datasets:
+
+  - name: anshcode1_AnswerScripts
+    version: "1.0"
+    license: CC BY 4.0
+    citation: anshcode1_2023
+    language: English
+    script: Latin
+    files: 5914
+    size_gb: 0.041
+    has_ocr_labels: false
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+    download_source: huggingface:anshcode1/AnswerScripts
+    local_path: data_sources/tier1_exam_grading/anshcode1_AnswerScripts
+    notes: Writer-ID labels only, no question text or grades. 224x224 mobile-captured images.
+
+  - name: mendeley_sf3kvjwknt
+    version: "1.0"
+    license: CC BY 4.0
+    citation: mendeley_sf3kvjwknt_2026
+    language: English
+    script: Latin
+    files: 107
+    size_gb: 0.308
+    has_ocr_labels: false
+    has_teacher_scores: true
+    has_images: true
+    tracks:
+      - Track 3 — Educational Assessment
+      - Track 5 — Trustworthiness
+    download_source: https://data.mendeley.com/datasets/sf3kvjwknt/1
+    local_path: data_sources/tier1_exam_grading/mendeley_sf3kvjwknt
+    notes: 50 university exam scripts with MCQ + short answer marks. Fully anonymized.
+
+  - name: gopika13_answer_scripts
+    version: "1.0"
+    license: CC BY 4.0
+    citation: gopika13_2024
+    language: English
+    script: Latin
+    files: 700
+    size_gb: 0.041
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+      - Track 4 — Multimodal Understanding
+    download_source: huggingface:gopika13/answer_scripts
+    local_path: data_sources/tier1_exam_grading/gopika13_answer_scripts
+    notes: Handwritten answer sheets with OCR text via annotations.parquet. No grades.
+
+  - name: IAM_Handwriting
+    version: "3.0"
+    license: CC BY 4.0
+    citation: marti_bunke_2002
+    language: English
+    script: Latin
+    files: 48400
+    size_gb: 1.6
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+      - Track 2 — Document Understanding
+    download_source: https://fki.tic.heia-fr.ch/databases/iam-handwriting-database
+    local_path: data_sources/tier2_handwriting_pretrain/IAM_Handwriting
+    notes: English text from LOB corpus. Word, line, and page level. Gold-standard OCR benchmark.
+
+  - name: IIIT_English_Training
+    version: "1.0"
+    license: CC BY 4.0
+    citation: iiit_ilocr_2024
+    language: English
+    script: Latin
+    files: 251
+    size_gb: 0.094
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+      - Track 2 — Document Understanding
+    download_source: https://ilocr.iiit.ac.in
+    local_path: data_sources/tier2_handwriting_pretrain/IIIT_English/Training-Set
+    notes: General English handwriting training set from IIIT Hyderabad OCR lab.
+
+  - name: IIIT_English_Word
+    version: "1.0"
+    license: CC BY 4.0
+    citation: iiit_ilocr_2024
+    language: English
+    script: Latin
+    files: 85021
+    size_gb: 1.5
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+      - Track 2 — Document Understanding
+    download_source: https://ilocr.iiit.ac.in
+    local_path: data_sources/tier2_handwriting_pretrain/IIIT_English/Word_Level
+    notes: Word-level English handwriting images with transcriptions.
+
+  - name: IIIT_English_Page
+    version: "1.0"
+    license: CC BY 4.0
+    citation: iiit_ilocr_2024
+    language: English
+    script: Latin
+    files: 7000
+    size_gb: 2.8
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 1 — OCR
+      - Track 2 — Document Understanding
+    download_source: https://ilocr.iiit.ac.in
+    local_path: data_sources/tier2_handwriting_pretrain/IIIT_English/Page_Level
+    notes: Page-level English handwriting images with transcriptions.
+
+  - name: IEEE_AnswerSheet
+    version: "1.0"
+    license: CC BY 4.0
+    citation: ieee_answersheet_2023
+    language: English
+    script: Latin
+    files: null
+    size_gb: null
+    has_ocr_labels: true
+    has_teacher_scores: false
+    has_images: true
+    tracks:
+      - Track 2 — Document Understanding
+      - Track 3 — Educational Assessment
+    download_source: https://ieee-dataport.org/documents/answer-sheet-dataset
+    local_path: data_sources/tier1_exam_grading/IEEE_AnswerSheet
+    notes: 505 pages of student fixed-response answer sheets. Pending download (institutional network).

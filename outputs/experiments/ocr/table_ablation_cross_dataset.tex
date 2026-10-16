@@ -1,0 +1,16 @@
+\begin{table}[ht]
+\centering
+\small
+\caption{Cross-dataset generalisation gap (Exact Match) for word-level OCR models. Positive gap indicates better performance on IAM than IIIT-Word, suggesting IAM-biased training.}
+\label{tab:ablation_cross_dataset}
+\begin{tabular}{lrrrr}
+\hline
+Model & IAM EM $\uparrow$ & IIIT-W EM $\uparrow$ & IAM CER $\downarrow$ & Gap (EM) \\
+\hline
+Tesseract 5 & 0.045 & 0.148 & 0.798 & -0.103 \\
+EasyOCR & 0.045 & 0.296 & 0.631 & -0.251 \\
+TrOCR-base & 0.553 & 0.291 & 0.229 & +0.261 \\
+PaddleOCR & 0.075 & 0.664 & 0.513 & -0.589 \\
+\hline
+\end{tabular}
+\end{table}

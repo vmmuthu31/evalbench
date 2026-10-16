@@ -1,0 +1,17 @@
+\begin{table}[ht]
+\centering
+\small
+\caption{OCR Track Word-level Results. CER and Exact Match (EM) per model and dataset (words $\geq$ 3 chars, $n$=200 per model-dataset pair).}
+\label{tab:ocr_word_results}
+\begin{tabular}{lrrrr}
+\hline
+Model & \multicolumn{2}{c}{IAM} & \multicolumn{2}{c}{IIIT-Word} \\
+ & CER $\downarrow$ & EM $\uparrow$ & CER $\downarrow$ & EM $\uparrow$ \\
+\hline
+Tesseract 5 & 0.798 & 0.045 & 0.665 & 0.148 \\
+EasyOCR & 0.631 & 0.045 & 0.378 & 0.296 \\
+TrOCR-base & 0.229 & 0.553 & 0.521 & 0.291 \\
+PaddleOCR & 0.513 & 0.075 & 0.176 & 0.664 \\
+\hline
+\end{tabular}
+\end{table}

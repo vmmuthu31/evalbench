@@ -15,10 +15,10 @@ are available through [GitHub Releases](https://github.com/vmmuthu31/evalbench/r
 
 **Current release: v1.0.0-pilot**, the reproducibility package for the manuscript *"EvalBench v1
 (Pilot Release): A Unified Multi-Task Benchmark for AI Evaluation in Educational Settings,"*
-submitted to Engineering Applications of Artificial Intelligence.
+archived on Zenodo (https://doi.org/10.5281/zenodo.23410592) and since updated with a second fixed-model run.
 
 Status: Pilot Release (v1.0.0)
-Journal Submission: Submitted to Engineering Applications of Artificial Intelligence (under review)
+Archive: https://doi.org/10.5281/zenodo.23410592
 License: MIT (code), CC BY 4.0 (processed manifest)
 
 ## What this pilot release reports
@@ -29,9 +29,9 @@ Five tracks are defined in the schema; three have experimental results in this r
   TrOCR-base, and PaddleOCR — on the IAM and IIIT English Word datasets, with bootstrap confidence
   intervals and paired permutation tests on the cross-corpus rank reversal.
 - **Educational assessment (Track 3).** Gemini-based rubric-free grading on 50 Mendeley exam
-  papers, with bootstrap CIs on MAE and Pearson r.
+  papers with one fixed Gemini version (gemini-3.5-flash, temperature 0, seed 42), run twice (MAE 1.58 and 0.80 marks), with bootstrap CIs on MAE and Pearson r.
 - **Trustworthiness (Track 5).** Confidence calibration (ECE, AUROC) and evidence-generation rate
-  on the same 50 papers.
+  on the same 50 papers, also run twice (AUROC 0.530 and 0.621; both CIs include 0.5).
 
 Tracks 2 (document understanding) and 4 (multimodal understanding) are fully specified in the
 schema and partially covered by existing document-image data, but have no evaluation script or
@@ -93,7 +93,13 @@ python3 scripts/build/build_evalbench.py
 # Re-run Track 1 OCR evaluation
 python3 scripts/experiments/ocr/run_ocr_eval.py --n 0
 
-# Re-run Track 3 / Track 5 (requires a Gemini API key)
+# Fixed-model Track 3 / Track 5 run (GEMINI_KEYS_FILE = one API key per line; keys are tried in order).
+# Run 1 -> outputs/experiments/fixed_model/, Run 2 -> FIXED_OUT=outputs/experiments/fixed_model_rep2
+GEMINI_KEYS_FILE=keys.txt python3 scripts/experiments/run_fixed_gemini.py track3
+GEMINI_KEYS_FILE=keys.txt python3 scripts/experiments/run_fixed_gemini.py track5
+python3 scripts/experiments/compare_repeat_runs.py   # Run 1 vs Run 2
+
+# Earlier mixed-version Track 3 / Track 5 run (superseded; requires a Gemini API key)
 python3 scripts/experiments/track3_assessment/run_assessment_eval.py
 python3 scripts/experiments/track5_trust/run_trust_eval.py
 
@@ -103,8 +109,11 @@ python3 scripts/build/build_docx.py
 
 ## Citation
 
-If you use this benchmark, please cite the manuscript (full citation to be added once the DOI is
-assigned) and, where applicable, the constituent dataset sources listed above.
+If you use this benchmark, please cite the archived release and, where applicable, the constituent
+dataset sources listed above:
+
+> Vairamuthu M, Sudhan MB (2026) EvalBench v1: unified multi-task benchmark for educational document
+> processing. Dataset. Zenodo. https://doi.org/10.5281/zenodo.23410592
 
 ## License
 

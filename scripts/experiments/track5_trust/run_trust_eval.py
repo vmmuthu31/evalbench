@@ -217,23 +217,27 @@ def compute_trust_metrics(results: list[dict], correct_tol: float = 3.0,
         avg_acc  = sum(x[1] for x in b) / len(b)
         ece     += abs(avg_conf - avg_acc) * len(b) / len(scored)
 
-    # AUROC (trapezoidal)
-    paired = list(zip(confs, corrects))
-    paired.sort(key=lambda x: -x[0])
+    # AUROC: rank-based (Mann-Whitney) with mid-ranks for tied confidences.
+    # (An earlier version swept a ROC curve in sorted order, which made the
+    # result depend on the order of tied confidence values; fixed.)
     n_pos  = sum(corrects)
     n_neg  = len(corrects) - n_pos
     if n_pos == 0 or n_neg == 0:
         auroc = 0.5
     else:
-        tp, fp, prev_tp, prev_fp = 0, 0, 0, 0
-        auroc = 0.0
-        for conf, correct in paired:
-            if correct:
-                tp += 1
-            else:
-                fp += 1
-            auroc += (fp - prev_fp) / n_neg * (tp + prev_tp) / (2 * n_pos)
-            prev_tp, prev_fp = tp, fp
+        order = sorted(range(len(confs)), key=lambda i: confs[i])
+        ranks = [0.0] * len(confs)
+        i = 0
+        while i < len(order):
+            j = i
+            while j + 1 < len(order) and confs[order[j + 1]] == confs[order[i]]:
+                j += 1
+            for k in range(i, j + 1):
+                ranks[order[k]] = (i + j) / 2 + 1
+            i = j + 1
+        r_pos = sum(r for r, c in zip(ranks, corrects) if c)
+        auroc = (r_pos - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg)
+    brier = sum((c - k) ** 2 for c, k in zip(confs, corrects)) / len(scored)
 
     grounding_rate = sum(1 for r in results if r.get("evidence") and len(r["evidence"]) > 5) / len(results)
     has_reasoning  = sum(1 for r in results if r.get("reasoning") and len(r["reasoning"]) > 10) / len(results)
@@ -247,6 +251,7 @@ def compute_trust_metrics(results: list[dict], correct_tol: float = 3.0,
         "accuracy_pm3":    round(sum(corrects) / len(scored), 3),
         "ece":             round(ece, 4),
         "auroc":           round(auroc, 4),
+        "brier":           round(brier, 4),
         "grounding_rate":  round(grounding_rate, 3),
         "reasoning_rate":  round(has_reasoning, 3),
     }

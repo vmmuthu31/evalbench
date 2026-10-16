@@ -13,4 +13,5 @@ authors:
 version: "1.0.0-pilot"
 date-released: "2026-08-03"
 license: MIT
+doi: 10.5281/zenodo.23410592
 repository-code: "https://github.com/vmmuthu31/evalbench"

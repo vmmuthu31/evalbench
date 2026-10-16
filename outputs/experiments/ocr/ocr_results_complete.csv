@@ -1,0 +1,8 @@
+model,dataset,level,n,mean_cer,median_cer,exact_match,char_acc,ms_per_img
+Tesseract 5,IAM,word,199,0.798,0.8,0.045,0.202,223.0
+Tesseract 5,IIIT Word,word,223,0.665,0.667,0.148,0.335,241.0
+EasyOCR,IAM,word,199,0.631,0.667,0.045,0.369,256.0
+EasyOCR,IIIT Word,word,223,0.378,0.333,0.296,0.622,664.0
+TrOCR-base,IAM,word,199,0.229,0.0,0.553,0.771,745.0
+TrOCR-base,IIIT Word,word,223,0.521,0.4,0.291,0.479,787.0
+Tesseract 5,IIIT Page,page,200,1.757,0.769,0.0,-0.757,6026.0

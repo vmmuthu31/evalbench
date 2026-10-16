@@ -1,0 +1,2 @@
+model,n,mae,mae_lo,mae_hi,pearson_r,pearson_lo,pearson_hi,spearman_rho,spearman_lo,spearman_hi,within_1,within_3,within_5,mean_bias,median_abs_error
+gemini-3.5-flash (fixed),50,1.58,0.69,2.7,0.873,0.697,0.98,0.896,0.704,0.988,0.72,0.88,0.92,-0.26,0.0

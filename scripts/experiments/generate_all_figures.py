@@ -201,17 +201,12 @@ print("Fig 4: AUC-ROC...")
 confs   = [r["confidence"] or 0.0 for r in t5]
 correct = [int(abs(r["true_score"] - r["pred_score"]) <= 3) for r in t5]
 
-# ROC curve
-paired = sorted(zip(confs, correct), key=lambda x: -x[0])
+# ROC curve (tie-aware: one point per distinct confidence threshold)
 n_pos = sum(correct); n_neg = len(correct) - n_pos
 tpr_pts, fpr_pts = [0.0], [0.0]
-tp = fp = 0
-for c, cor in paired:
-    if cor: tp += 1
-    else:   fp += 1
-    tpr_pts.append(tp / n_pos)
-    fpr_pts.append(fp / n_neg)
-tpr_pts.append(1.0); fpr_pts.append(1.0)
+for t in sorted(set(confs), reverse=True):
+    tpr_pts.append(sum(1 for c, k in zip(confs, correct) if c >= t and k) / n_pos)
+    fpr_pts.append(sum(1 for c, k in zip(confs, correct) if c >= t and not k) / n_neg)
 
 auroc = sum(
     (fpr_pts[i+1]-fpr_pts[i]) * (tpr_pts[i+1]+tpr_pts[i]) / 2
@@ -425,7 +420,7 @@ for patch, edge in zip(patches, edges[:-1]):
 ax.axvline(0, color="black", lw=2, ls="--", label="Zero error")
 ax.axvspan(-3, 3, alpha=0.08, color="#43A885", label="±3 mark tolerance")
 mae = sum(abs(e) for e in errors)/len(errors)
-ax.axvline(mae,  color="#DD8452", lw=1.5, ls=":", label=f"Mean error = {sum(errors)/len(errors):+.2f}")
+ax.axvline(sum(errors)/len(errors), color="#DD8452", lw=1.5, ls=":", label=f"Mean error = {sum(errors)/len(errors):+.2f}")
 ax.set_xlabel("Prediction Error (Predicted − True marks)", fontsize=11)
 ax.set_ylabel("Frequency", fontsize=11)
 ax.set_title("Track 3: Distribution of Score Prediction Errors\n"
