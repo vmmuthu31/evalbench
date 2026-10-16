@@ -6,27 +6,18 @@ Covers: Track 1 (matched subsets, EM gap, bootstrap CI, permutation p), Track 2 
 Track 3 and Track 5 (Run 1 and Run 2). Bootstrap: 10,000 resamples, numpy default_rng(42).
 Character accuracy is the per-record max(0, 1 - CER), averaged. (The per-record `char_accuracy` field
 stored in older prediction files is the unclamped 1 - CER, so it is recomputed from `cer` here.)
-Interval end-points can differ from the manuscript by up to about 0.006 because they depend on the order of records.
+All bootstrap intervals use scripts/experiments/canonical_bootstrap.py (records sorted by record_id, numpy default_rng(42)),
+so they match the manuscript and the archived CSV files exactly (to three decimals).
 """
-import json, collections, numpy as np
-from scipy.stats import pearsonr, spearmanr, rankdata
+import json, collections, os, sys, numpy as np
+from scipy.stats import pearsonr, spearmanr
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "experiments"))
+import canonical_bootstrap as cb
+auroc, ece = cb.auroc, cb.ece
+boot = lambda f, n: np.array(cb.boot(f, n))  # one bootstrap procedure for every interval (see canonical_bootstrap.py)
 
 O = "outputs/experiments/"
-load = lambda p: [json.loads(l) for l in open(O + p)]
-
-def boot(f, n, B=10000):
-    rng = np.random.default_rng(42)
-    v = [f(rng.integers(0, n, n)) for _ in range(B)]
-    return np.nanpercentile(v, [2.5, 97.5])
-
-def auroc(c, y):
-    c = np.asarray(c, float); y = np.asarray(y, int); p = y.sum(); n = len(y) - p
-    if p == 0 or n == 0: return np.nan
-    r = rankdata(c); return (r[y == 1].sum() - p * (p + 1) / 2) / (p * n)
-
-def ece(c, y, b=10):
-    c = np.asarray(c, float); y = np.asarray(y, float); k = np.minimum((c * b).astype(int), b - 1)
-    return sum((k == i).mean() * abs(y[k == i].mean() - c[k == i].mean()) for i in range(b) if (k == i).any())
+load = lambda p: sorted((json.loads(l) for l in open(O + p)), key=lambda r: r["record_id"])
 
 print("== Track 1 (matched subsets, reference length >= 3) ==")
 R = [r for r in load("ocr/predictions.jsonl") + load("ocr/ocrspace_engine2_predictions.jsonl") if r["dataset"] in ("iam", "iiit_word")]
@@ -65,7 +56,7 @@ for run, d in (("Run 1", "fixed_model"), ("Run 2", "fixed_model_rep2")):
     t3 = load(f"{d}/track3_predictions.jsonl"); t5 = load(f"{d}/track5_predictions.jsonl")
     tr = np.array([x["true_score"] for x in t3], float); pr = np.array([x["pred_score"] for x in t3], float); e = abs(pr - tr); n = len(e)
     print(f"{run} T3 n {n} MAE {e.mean():.3f} {boot(lambda i: e[i].mean(), n).round(3)} r {pearsonr(pr, tr)[0]:.3f} "
-          f"{boot(lambda i: np.corrcoef(pr[i], tr[i])[0, 1], n).round(3)} rho {spearmanr(pr, tr)[0]:.3f} "
+          f"{boot(lambda i: cb.pearson(pr[i], tr[i]), n).round(3)} rho {spearmanr(pr, tr)[0]:.3f} "
           f"EM+-1 {(e <= 1).mean():.3f} EM+-3 {(e <= 3).mean():.3f} EM+-5 {(e <= 5).mean():.3f}")
     sc = np.array([x["pred_score"] for x in t5], float); tt = np.array([x["true_score"] for x in t5], float)
     cf = np.array([x["confidence"] for x in t5], float); y = (abs(sc - tt) <= 3).astype(int)

@@ -44,3 +44,7 @@ Archived on Zenodo as https://doi.org/10.5281/zenodo.23410592.
   `FIXED_OUT` selects the output folder), `compare_repeat_runs.py`, `track3_bootstrap_stats.py`,
   `track5_trust/track5_sensitivity.py`.
 - Leaderboard lists both runs.
+- Bootstrap intervals now use one documented procedure (`scripts/experiments/canonical_bootstrap.py`: records sorted by `record_id`,
+  numpy `default_rng(42)`, 10,000 resamples). `track3_bootstrap_stats.py` and `track5_trust/track5_sensitivity.py` use it, and the CSVs
+  `track3_results_boot.csv`, `track5_sensitivity.csv` and `bootstrap_canonical.csv` were regenerated; point estimates are unchanged and
+  interval end-points moved by at most 0.05 (Track 3/5 only; Track 1 and Track 2 intervals were already identical).

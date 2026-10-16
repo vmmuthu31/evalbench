@@ -82,7 +82,7 @@ granularity. See manuscript Section 4.3.
 | gemini-3.5-flash (fixed version, no rubric), Run 2 | 0.800 | 0.981 | 0.977 | 0.760 | 0.980 |
 | *Earlier mixed-version run (superseded)* | 3.780 | 0.543 | 0.550 | 0.580 | 0.780 |
 
-95% CI (Run 1): MAE [0.690, 2.700], Pearson r [0.697, 0.981], Spearman rho [0.704, 0.988]; 88% of papers within ±3 marks. Run 2 (identical settings): MAE [0.460, 1.190], Pearson r [0.964, 0.992]; 92% within ±3 marks. The runs agree on 47 of 50 papers; the three that differ (Run 1 errors of 14, 8 and 21 marks) carry 43 of Run 1's 79 total absolute-error marks, so a single call's MAE can halve on repetition. Report both runs.
+Bootstrap 95% CIs (10,000 resamples, seed 42, records sorted by record_id; `scripts/experiments/canonical_bootstrap.py`). Run 1: MAE [0.680, 2.750], Pearson r [0.696, 0.980], Spearman rho [0.706, 0.988]; 88% of papers within ±3 marks. Run 2 (identical settings): MAE [0.450, 1.200], Pearson r [0.964, 0.992]; 92% within ±3 marks. The runs agree on 47 of 50 papers; the three that differ (Run 1 errors of 14, 8 and 21 marks) carry 43 of Run 1's 79 total absolute-error marks, so a single call's MAE can halve on repetition. Report both runs.
 Fixed run: temperature 0, seed 42, 150 DPI page-1 PNG, one call per paper (`outputs/experiments/fixed_model/`). The earlier run
 split the papers across three Gemini variants (per-variant MAE 1.43–6.17) and cannot separate model from paper subset.
 
@@ -94,13 +94,13 @@ split the papers across three Gemini variants (per-variant MAE 1.43–6.17) and 
 | gemini-3.5-flash (fixed version), Run 2 | 0.115 | 0.621 | 0.155 | 1.000 | 1.000 | 2.040 |
 | *Earlier mixed-version run (superseded)* | 0.251 | 0.506 | 0.266 | 1.000 | 1.000 | 4.120 |
 
-95% CI (Run 1): AUROC [0.380, 0.701], ECE [0.017, 0.208], Brier [0.058, 0.234]. Brier 0.144 is no better than the 0.134 obtained by
+95% CI (Run 1): AUROC [0.378, 0.703], ECE [0.017, 0.217], Brier [0.058, 0.237]. Brier 0.144 is no better than the 0.134 obtained by
 always stating the 84% base rate. Mean stated confidence is 0.940 for the 42 correct and 0.938 for the 8 incorrect grades (±3 marks): stated
 confidence carries no usable signal despite a perfect Evidence Generation Rate (a prompt-compliance presence check, not a
 verified-support metric — see `docs/TRACKS.md`). AUROC uses mid-ranks for tied confidences; an earlier script version resolved ties by sweep
 order and reported 0.571 for the mixed run (corrected: 0.506). Tolerance sensitivity (±1 to ±10 marks, AUROC 0.46–0.57, every CI contains 0.5):
 `outputs/experiments/fixed_model/track5_sensitivity.csv`.
-Run 2: AUROC [0.433, 0.810], ECE [0.019, 0.226], Brier [0.070, 0.248] (Brier 0.155 vs 0.148 for the 82% base rate); both AUROC intervals include 0.5. Sensitivity: `outputs/experiments/fixed_model_rep2/track5_sensitivity.csv`. Run comparison: `outputs/experiments/fixed_model_rep2/repeat_comparison.csv`.
+Run 2: AUROC [0.435, 0.813], ECE [0.020, 0.227], Brier [0.071, 0.249] (Brier 0.155 vs 0.148 for the 82% base rate); both AUROC intervals include 0.5. Sensitivity: `outputs/experiments/fixed_model_rep2/track5_sensitivity.csv`. Run comparison: `outputs/experiments/fixed_model_rep2/repeat_comparison.csv`.
 
 ## Track 4
 

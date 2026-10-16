@@ -4,7 +4,7 @@ import sys, json, csv
 import numpy as np
 from scipy.stats import pearsonr, spearmanr
 pred, out = sys.argv[1], sys.argv[2]; label = sys.argv[3] if len(sys.argv) > 3 else "run"
-R = [r for r in map(json.loads, open(pred)) if r.get("pred_score") is not None]
+R = sorted((r for r in map(json.loads, open(pred)) if r.get("pred_score") is not None), key=lambda r: r["record_id"])  # canonical order (see canonical_bootstrap.py)
 t = np.array([r["true_score"] for r in R]); p = np.array([r["pred_score"] for r in R]); n = len(R)
 def stats(i):
     tt, pp = t[i], p[i]; e = abs(tt - pp)
