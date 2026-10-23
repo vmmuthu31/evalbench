@@ -22,7 +22,7 @@ see the Quick Start below to run them yourself).
 | API Ninjas | Hosted OCR API | No | Yes (free tier) | No | OCR | Integrated, v1.1 |
 | Florence-2 | Vision-language model | Yes | Yes | Yes | Document Understanding, OCR | Reported (Track 2) |
 | Qwen2.5-VL | Vision-language model | Yes | Yes | Yes | OCR | Integrated, v1.1 |
-| Gemini Flash | Proprietary VLM | No | Yes (free tier) | No | Grading, Trust | Reported |
+| Gemini Flash | Proprietary VLM | No | Yes (free tier) | No | Score recovery, Trust | Reported |
 
 Run the free-tier OCR APIs yourself:
 
@@ -74,7 +74,9 @@ page-specific tuning. Exact Match is 0.000 for both, since a single character er
 full page fails a whole-page criterion — EM is not an informative headline metric at this
 granularity. See manuscript Section 4.3.
 
-## Track 3 — Educational Assessment (Mendeley, n = 50)
+## Track 3 — Educational Assessment: score recovery (Mendeley, n = 50)
+
+Caveat: the teacher's circled total is visible on page 1 of the Mendeley scripts, and the model's own evidence cites a circled or red-ink mark in 48/50 (Run 1) and 47/50 (Run 2) responses. Tracks 3 and 5 therefore measure score recovery (reading a recorded total from an annotated script) and confidence in that reading, not independent grading. The reference total is the ledger value, which can differ from the circled total (e.g. MDLY-0008: circled 27, ledger 25).
 
 | Model | MAE | Pearson r | Spearman rho | EM±1 | EM±5 |
 |---|---|---|---|---|---|
@@ -86,7 +88,7 @@ Bootstrap 95% CIs (10,000 resamples, seed 42, records sorted by record_id; `scri
 Fixed run: temperature 0, seed 42, 150 DPI page-1 PNG, one call per paper (`outputs/experiments/fixed_model/`). The earlier run
 split the papers across three Gemini variants (per-variant MAE 1.43–6.17) and cannot separate model from paper subset.
 
-## Track 5 — Trustworthiness (Mendeley, n = 50)
+## Track 5 — Trustworthiness: confidence in recovered score (Mendeley, n = 50)
 
 | Model | ECE | AUROC | Brier | Evidence Generation Rate | Reasoning Rate | MAE |
 |---|---|---|---|---|---|---|

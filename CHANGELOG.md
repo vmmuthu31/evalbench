@@ -18,6 +18,13 @@ Multi-Task Benchmark for AI Evaluation in Educational Settings."*
 - Tracks 2 (Document Understanding) and 4 (Multimodal Understanding) specified in the schema but
   not yet experiment-ready — no labelled ground truth or baseline script in this release
 
+## Unreleased — 2026-10-23
+
+- Reframed Tracks 3 and 5 as score recovery from annotated scripts (the teacher's circled total is
+  visible on page 1; evidence cites a circled/red-ink mark in 48/50 and 47/50 responses). Wording
+  only: no predictions, metrics or code behaviour changed.
+- Documented that the ledger reference total can differ from the circled total.
+
 ## Planned for v1.1.0
 
 - Track 2 baseline using the currently-unlabelled `anshcode1` records once annotated

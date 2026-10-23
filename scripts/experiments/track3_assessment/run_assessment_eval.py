@@ -35,6 +35,8 @@ PROC    = ROOT / "datasets/processed"
 OUT_DIR = ROOT / "outputs/experiments/track3"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+# NOTE: the Mendeley page-1 images show the teacher's circled total, so this prompt
+# measures score recovery from an annotated script, not independent grading.
 GRADING_PROMPT = """\
 You are an expert examiner reviewing a student examination paper.
 

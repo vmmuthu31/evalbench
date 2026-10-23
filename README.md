@@ -28,10 +28,12 @@ Five tracks are defined in the schema; three have experimental results in this r
 - **OCR accuracy (Track 1).** Performance for four widely used OCR systems — Tesseract 5, EasyOCR,
   TrOCR-base, and PaddleOCR — on the IAM and IIIT English Word datasets, with bootstrap confidence
   intervals and paired permutation tests on the cross-corpus rank reversal.
-- **Educational assessment (Track 3).** Gemini-based rubric-free grading on 50 Mendeley exam
+- **Educational assessment (Track 3).** Score recovery from annotated scripts: a Gemini model reads the teacher's recorded total on 50 Mendeley exam
   papers with one fixed Gemini version (gemini-3.5-flash, temperature 0, seed 42), run twice (MAE 1.58 and 0.80 marks), with bootstrap CIs on MAE and Pearson r.
 - **Trustworthiness (Track 5).** Confidence calibration (ECE, AUROC) and evidence-generation rate
   on the same 50 papers, also run twice (AUROC 0.530 and 0.621; both CIs include 0.5).
+
+Caveat: the teacher's circled total is visible on page 1 of the Mendeley scripts, and the model's own evidence cites a circled or red-ink mark in 48/50 (Run 1) and 47/50 (Run 2) responses. Tracks 3 and 5 therefore measure score recovery (reading a recorded total from an annotated script) and confidence in that reading, not independent grading. The reference total is the ledger value, which can differ from the circled total (e.g. MDLY-0008: circled 27, ledger 25).
 
 Tracks 2 (document understanding) and 4 (multimodal understanding) are fully specified in the
 schema and partially covered by existing document-image data, but have no evaluation script or
@@ -43,7 +45,7 @@ baseline yet in this release — see the manuscript's Limitations and Future Wor
 schema/                          EvalBench JSON Schema v2.0 (record and track definitions)
 data/processed/                  Processed corpus manifest (evalbench_v1.jsonl, 132,891 records)
 data/results/ocr/                Raw per-record OCR predictions (all 4 models)
-data/results/track3/             Raw per-record Track 3 grading predictions
+data/results/track3/             Raw per-record Track 3 score-recovery predictions
 data/results/track5/             Raw per-record Track 5 trustworthiness predictions
 scripts/experiments/ocr/         OCR evaluation harness + model wrappers + metrics
 scripts/experiments/track3_assessment/   Track 3 evaluation harness

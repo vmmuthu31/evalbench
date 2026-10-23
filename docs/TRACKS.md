@@ -9,7 +9,7 @@ section of the main README.
 |---|---|---|---|---|
 | 1 — OCR | Transcribe handwritten text from an image | CER, WER, Character Accuracy, Exact Match | iam, iiit_word, iiit_page, anshcode1, gopika13 | Reported |
 | 2 — Document Understanding | Page structure parsing, answer localization, layout understanding | Answer extraction F1, page structure accuracy | iam, iiit_page, gopika13, ieee | Schema-defined only, no baseline |
-| 3 — Educational Assessment | Given a handwritten answer image and (optionally) a rubric, assign a score | Score MAE, Pearson r, Spearman rho, Exact Score Match | mendeley, ieee | Reported |
+| 3 — Educational Assessment | Read the teacher's recorded total from an annotated script image (score recovery; independent rubric-based grading is not what the current Mendeley run measures, because the total is visible on page 1) | Score MAE, Pearson r, Spearman rho, Exact Score Match | mendeley, ieee | Reported |
 | 4 — Multimodal Understanding | STEM diagram interpretation, visual reasoning, VQA over educational documents | VQA accuracy, diagram interpretation accuracy | gopika13 | Schema-defined only, no baseline |
 | 5 — Trustworthiness | Confidence calibration, evidence generation, explanation quality | ECE, AUROC, Evidence Generation Rate, Reasoning Rate | mendeley, ieee | Reported |
 
