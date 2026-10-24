@@ -18,7 +18,15 @@ Multi-Task Benchmark for AI Evaluation in Educational Settings."*
 - Tracks 2 (Document Understanding) and 4 (Multimodal Understanding) specified in the schema but
   not yet experiment-ready — no labelled ground truth or baseline script in this release
 
-## Unreleased — 2026-10-23
+## Unreleased — 2026-10-24
+
+- README and leaderboard now match the submitted manuscript: five OCR systems in Track 1 (OCR.space added), Track 2 page-level
+  baseline reported, four of five tracks evaluated, Track 4 unevaluated. `scripts/verify_reported_tables.py` reproduces the
+  Track 1, 2, 3 and 5 tables from `outputs/experiments/`.
+- Corrected the Track 2 Florence-2-base Character Accuracy interval to 0.780-0.851 (the canonical bootstrap value).
+- Removed hard-coded Zenodo DOIs from README, CHANGELOG and CITATION; use the version DOI shown on the Zenodo record.
+
+## Earlier unreleased — 2026-10-23
 
 - Reframed Tracks 3 and 5 as score recovery from annotated scripts (the teacher's circled total is
   visible on page 1; evidence cites a circled/red-ink mark in 48/50 and 47/50 responses). Wording
@@ -42,7 +50,7 @@ Multi-Task Benchmark for AI Evaluation in Educational Settings."*
 
 ## Repeat-run update — 2026-10-16
 
-Archived on Zenodo as https://doi.org/10.5281/zenodo.23410592.
+Archived on Zenodo (see the record's version DOI).
 
 - Track 3 and Track 5 fixed-model evaluation run a second time under identical settings
   (`outputs/experiments/fixed_model_rep2/`); Run 1 stays in `outputs/experiments/fixed_model/`.

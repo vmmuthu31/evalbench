@@ -17,7 +17,7 @@ see the Quick Start below to run them yourself).
 | EasyOCR | Deep-learning OCR | Yes | Yes | Yes | OCR | Reported |
 | TrOCR-base | Transformer OCR | Yes | Yes | Yes | OCR | Reported |
 | PaddleOCR | Deep-learning OCR | Yes | Yes | Yes | OCR | Reported |
-| OCR.space | Hosted OCR API | No | Yes (free tier) | No | OCR | Integrated, v1.1 |
+| OCR.space | Hosted OCR API | No | Yes (free tier) | No | OCR | Reported (Track 1) |
 | Optiic | Hosted OCR API | No | Yes (free tier) | No | OCR | Integrated, v1.1 |
 | API Ninjas | Hosted OCR API | No | Yes (free tier) | No | OCR | Integrated, v1.1 |
 | Florence-2 | Vision-language model | Yes | Yes | Yes | Document Understanding, OCR | Reported (Track 2) |
@@ -64,7 +64,7 @@ at p = 0.002); OCR.space's gap (+0.058, 95% CI -0.056 to +0.171, p = 0.345) is n
 | Florence-2-base | 0.180 | 0.580 | 0.000 | 0.820 |
 
 95% CI: Tesseract 5 CER [3.681, 8.740], CharAcc [-7.708, -2.665]; Florence-2-base CER [0.149,
-0.220], CharAcc [0.782, 0.852]. Both models evaluated on the identical 50 test-split records.
+0.220], CharAcc [0.780, 0.851]. Both models evaluated on the identical 50 test-split records.
 
 Headline finding: the two baselines diverge sharply on the same pages. Tesseract 5, a classical
 non-handwriting-specialised engine, fails catastrophically on cursive multi-line page scans
