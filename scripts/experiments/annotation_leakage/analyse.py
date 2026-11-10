@@ -19,7 +19,7 @@ def met(rows,ids,name):
             if m.any(): e+=m.mean()*abs(c[m].mean()-y[m].mean())
         out+=f" | AUROC {au:.3f} ECE {e:.3f} Brier {np.mean((c-y)**2):.3f} acc3 {y.mean():.2f} meanconf {c.mean():.2f}"
     print(out);return p,t
-D='outputs/run1/'
+D=sys.argv[1]
 e1=load(D+'e1t3_predictions.jsonl');e5=load(D+'e1t5_predictions.jsonl');e3=load(D+'e3b_predictions.jsonl')
 ids=sorted(e1)
 p,t=met(e1,ids,'clean page1 T3');met(e5,sorted(e5),'clean page1 T5');met(e3,sorted(e3),'indep. grading 4pp T3b')
