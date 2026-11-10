@@ -68,6 +68,14 @@ TOTAL: <number out of 50>
 CONFIDENCE: <decimal 0.0-1.0, your confidence that TOTAL is within 3 marks of the true total>
 REASONING: <1-3 sentences>
 """
+def render_masked(student, width=1240):
+    import numpy as np
+    from scipy.ndimage import binary_dilation
+    doc = fitz.open(str(D/"Corrected_Pdf"/f"Student_{student}.pdf")); pg = doc.load_page(0); z = width / pg.rect.width
+    pix = pg.get_pixmap(matrix=fitz.Matrix(z, z)); a = np.array(Image.frombytes("RGB", [pix.width, pix.height], pix.samples)).astype(int)
+    r, g, b = a[..., 0], a[..., 1], a[..., 2]; red = (r > 130) & (r - g > 60) & (r - b > 60)
+    a[binary_dilation(red, iterations=3)] = 255; doc.close()
+    return [Image.fromarray(a.astype("uint8"))]
 def render(student, pages, width=1240):
     out = []
     doc = fitz.open(str(D/"Student_Pdf"/f"Student_{student}.pdf"))
@@ -142,7 +150,11 @@ if __name__ == "__main__":
     def work(r):
         if time.time() > deadline: return
         t0 = time.perf_counter()
-        if mode == "e1t3":
+        if mode == "m1t3":
+            raw = call(render_masked(r["student"]), GRADING_PROMPT); row = {"pred_score": None if raw.startswith("ERROR") else num(raw)}
+        elif mode == "m1t5":
+            raw = call(render_masked(r["student"]), TRUST_PROMPT); row = {} if raw.startswith("ERROR") else parse_trust(raw)
+        elif mode == "e1t3":
             raw = call(render(r["student"], [0]), GRADING_PROMPT); row = {"pred_score": None if raw.startswith("ERROR") else num(raw)}
         elif mode == "e1t5":
             raw = call(render(r["student"], [0]), TRUST_PROMPT); row = {} if raw.startswith("ERROR") else parse_trust(raw)
