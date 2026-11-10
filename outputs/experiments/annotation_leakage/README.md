@@ -16,4 +16,4 @@ Run 2 (same settings, independent calls): clean T3 MAE 10.26 [8.64, 11.94], r 0.
 | Clean page 1, Track 3 | 6.44 | 0.13 | |
 | Clean page 1, Track 5 | 9.40 | -0.03 | AUROC 0.507, mean confidence 0.68 |
 | Independent grading (4 pages + key) | 17.72 | 0.04 | predicts ~46 for all, mean confidence 0.95, 1/50 within 3 marks |
-Runner and prompts: run_ollama.py (on the author's machine; add to repo if wanted).
+Runner: scripts/experiments/annotation_leakage/run_ollama.py with run_all.sh.
