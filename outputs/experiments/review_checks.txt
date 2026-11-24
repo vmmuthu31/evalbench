@@ -1,0 +1,17 @@
+== Track 1 sampling sensitivity (EM, CER)
+iam: raw records 300, first IAM-030645, last IAM-030944, common n = 133
+  tesseract5  common n=133 EM=0.045 CER=0.784 | all n=199 EM=0.045 CER=0.798
+  easyocr     common n=133 EM=0.053 CER=0.638 | all n=199 EM=0.045 CER=0.631
+  trocr_base  common n=133 EM=0.534 CER=0.224 | all n=199 EM=0.553 CER=0.229
+iiit_word: raw records 300, first IIITW-000002, last IIITW-001568, common n = 146
+  tesseract5  common n=146 EM=0.164 CER=0.663 | all n=223 EM=0.148 CER=0.665
+  easyocr     common n=146 EM=0.247 CER=0.395 | all n=223 EM=0.296 CER=0.378
+  trocr_base  common n=146 EM=0.301 CER=0.509 | all n=223 EM=0.291 CER=0.521
+== Track 5 evidence consistency (predicted total appears as a number in EVIDENCE)
+fixed_model: all 50/50; incorrect 8/8
+fixed_model_rep2: all 49/50; incorrect 8/9
+== Prompt hashes (SHA-256, first 16 hex)
+run_assessment_eval.py: GRADING_PROMPT b418c2b16c08fbbf
+run_trust_eval.py: TRUST_PROMPT 2bcffa0fe91dfcb8
+run_masked.py: GRADING_PROMPT b418c2b16c08fbbf
+run_masked.py: TRUST_PROMPT 2bcffa0fe91dfcb8
